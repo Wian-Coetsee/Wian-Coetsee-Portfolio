@@ -661,7 +661,7 @@ const addRef = (el) => {
             >
             wiancoetsee@gmail.com
             </a>
-            <br>
+            
             <a
              href="https://www.linkedin.com/in/wian-coetsee-01796b34a/"
               target="_blank"
@@ -670,7 +670,6 @@ const addRef = (el) => {
             >
             LinkedIn Profile
           </a>
-            </br>
           </div>
 
         </div>
