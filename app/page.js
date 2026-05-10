@@ -656,25 +656,37 @@ const addRef = (el) => {
     </div>
 
     {/* RIGHT SIDE */}
-    <div className="flex flex-col items-start gap-3">
+<div className="flex flex-col items-start gap-4">
 
-      <a
-        href="mailto:wiancoetsee@gmail.com"
-        className="block text-zinc-400 transition hover:text-cyan-400"
-      >
-        wiancoetsee@gmail.com
-      </a>
+  <a
+    href="mailto:wiancoetsee@gmail.com"
+    className="group flex items-center gap-3 rounded-2xl border border-cyan-500/20 bg-zinc-900/50 px-5 py-3 text-cyan-300 transition-all duration-300 hover:border-cyan-400 hover:bg-cyan-500/10 hover:text-cyan-200 hover:shadow-[0_0_25px_rgba(34,211,238,0.18)]"
+  >
+    <span className="text-lg transition group-hover:translate-x-1">
+      →
+    </span>
 
-      <a
-        href="https://www.linkedin.com/in/wian-coetsee-01796b34a/"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="block text-zinc-400 transition hover:text-cyan-400"
-      >
-        LinkedIn Profile
-      </a>
+    <span className="tracking-wide">
+      wiancoetsee@gmail.com
+    </span>
+  </a>
 
-    </div>
+  <a
+    href="https://www.linkedin.com/in/wian-coetsee-01796b34a/"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="group flex items-center gap-3 rounded-2xl border border-cyan-500/20 bg-zinc-900/50 px-5 py-3 text-cyan-300 transition-all duration-300 hover:border-cyan-400 hover:bg-cyan-500/10 hover:text-cyan-200 hover:shadow-[0_0_25px_rgba(34,211,238,0.18)]"
+  >
+    <span className="text-lg transition group-hover:translate-x-1">
+      →
+    </span>
+
+    <span className="tracking-wide">
+      LinkedIn Profile
+    </span>
+  </a>
+
+</div>
 
   </div>
 </footer>
