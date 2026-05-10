@@ -655,8 +655,20 @@ const addRef = (el) => {
           </div>
 
           <div className="space-y-3 text-zinc-400">
-            <p>Email: wiancoetsee@gmail.com</p>
-            <p>LinkedIn: https://www.linkedin.com/in/wian-coetsee-01796b34a/</p>
+            <a
+            href="mailto:wiancoetsee@gmail.com"
+            className="transition text-zinc-400 hover:text-cyan-400"
+            >
+            wiancoetsee@gmail.com
+            </a>
+            <a
+             href="https://www.linkedin.com/in/wian-coetsee-01796b34a/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition text-zinc-400 hover:text-cyan-400"
+            >
+  LinkedIn Profile
+</a>
           </div>
 
         </div>
