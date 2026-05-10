@@ -638,42 +638,46 @@ const addRef = (el) => {
       </section>
 
       {/* FOOTER */}
-      <footer
-        id="contact"
-        className="relative scroll-mt-32 border-t border-zinc-800/80 py-20"
-        >
-        <div className="mx-auto flex max-w-6xl flex-col justify-between gap-12 px-6 md:flex-row">
+<footer
+  id="contact"
+  className="relative scroll-mt-32 border-t border-zinc-800/80 py-20"
+>
+  <div className="mx-auto flex max-w-6xl flex-col justify-between gap-12 px-6 md:flex-row">
 
-          <div>
-            <h3 className="bg-gradient-to-r from-white to-zinc-500 bg-clip-text text-3xl font-bold text-transparent">
-              Wian Maarten Coetsee
-            </h3>
+    {/* LEFT SIDE */}
+    <div>
+      <h3 className="bg-gradient-to-r from-white to-zinc-500 bg-clip-text text-3xl font-bold text-transparent">
+        Wian Maarten Coetsee
+      </h3>
 
-            <p className="mt-4 text-zinc-400">
-              3D Artist • Environment Artist • Hard Surface Modelling
-            </p>
-          </div>
+      <p className="mt-4 text-zinc-400">
+        3D Artist • Environment Artist • Hard Surface Modelling
+      </p>
+    </div>
 
-          <div className="space-y-3 text-zinc-400">
-            <a
-            href="mailto:wiancoetsee@gmail.com"
-            className="transition text-zinc-400 hover:text-cyan-400"
-            >
-            wiancoetsee@gmail.com
-            </a>
-            
-            <a
-             href="https://www.linkedin.com/in/wian-coetsee-01796b34a/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="transition text-zinc-400 hover:text-cyan-400"
-            >
-            LinkedIn Profile
-          </a>
-          </div>
+    {/* RIGHT SIDE */}
+    <div className="flex flex-col items-start gap-3">
 
-        </div>
-      </footer>
+      <a
+        href="mailto:wiancoetsee@gmail.com"
+        className="block text-zinc-400 transition hover:text-cyan-400"
+      >
+        wiancoetsee@gmail.com
+      </a>
+
+      <a
+        href="https://www.linkedin.com/in/wian-coetsee-01796b34a/"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="block text-zinc-400 transition hover:text-cyan-400"
+      >
+        LinkedIn Profile
+      </a>
+
+    </div>
+
+  </div>
+</footer>
 
       {/* GLOBAL FADE */}
       <style jsx global>{`
