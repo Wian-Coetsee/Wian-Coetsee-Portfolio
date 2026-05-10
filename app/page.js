@@ -120,7 +120,8 @@ useEffect(() => {
       });
     },
     {
-      threshold: 0.35,
+      rootMargin: "-35% 0px -55% 0px",
+      threshold: 0,
     }
   );
 
@@ -245,13 +246,12 @@ const addRef = (el) => {
 }
 
   return (
-    <div className="relative overflow-hidden bg-zinc-950 text-white font-sans">
+    <div className="relative overflow-hidden bg-zinc-950 pt-24 text-white font-sans">
 
   {/* NAVIGATION */}
-<nav className="sticky top-0 z-50 border-b border-zinc-800/80 bg-zinc-950/80 backdrop-blur-xl">
-  <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+<nav className="fixed top-0 left-0 right-0 z-[999] border-b border-zinc-800/80 bg-zinc-950/75 backdrop-blur-2xl shadow-[0_8px_30px_rgba(0,0,0,0.35)]">
+  <div className="mx-auto flex max-w-7xl items-center justify-center px-6 py-4">
 
-    {/* Links */}
     <div className="hidden gap-2 md:flex">
       {[
         { name: "About", id: "about" },
@@ -260,6 +260,7 @@ const addRef = (el) => {
         { name: "Gallery", id: "gallery" },
         { name: "CV", id: "cv" },
         { name: "Qualifications", id: "qualifications" },
+        { name: "Contact", id: "contact" },
       ].map((item) => (
         <button
           key={item.id}
@@ -267,21 +268,16 @@ const addRef = (el) => {
             const el = document.getElementById(item.id);
 
             if (el) {
-              const y =
-                el.getBoundingClientRect().top +
-                window.pageYOffset -
-                90;
-
-              window.scrollTo({
-                top: y,
+              el.scrollIntoView({
                 behavior: "smooth",
+                block: "start",
               });
             }
           }}
-          className={`rounded-full px-4 py-2 text-sm uppercase tracking-[0.18em] transition duration-300 ${
+          className={`rounded-full border px-4 py-2 text-sm uppercase tracking-[0.18em] transition-all duration-300 ${
             activeSection === item.id
-              ? "bg-cyan-500/15 text-cyan-300 border border-cyan-500/30"
-              : "border border-transparent text-zinc-400 hover:border-zinc-700 hover:text-white"
+              ? "border-cyan-500/40 bg-cyan-500/15 text-cyan-300 shadow-[0_0_20px_rgba(34,211,238,0.18)]"
+              : "border-transparent text-zinc-400 hover:border-zinc-700 hover:bg-zinc-900/70 hover:text-white"
           }`}
         >
           {item.name}
@@ -596,6 +592,7 @@ const addRef = (el) => {
 
       {/* QUALIFICATIONS */}
       <section
+        id="qualifications"
         ref={addRef}
         className="relative opacity-0 translate-y-6 transition-all duration-1000 border-t border-zinc-800/80"
       >
@@ -641,7 +638,10 @@ const addRef = (el) => {
       </section>
 
       {/* FOOTER */}
-      <footer className="relative border-t border-zinc-800/80 py-20">
+      <footer
+        id="contact"
+        className="relative scroll-mt-32 border-t border-zinc-800/80 py-20"
+        >
         <div className="mx-auto flex max-w-6xl flex-col justify-between gap-12 px-6 md:flex-row">
 
           <div>
