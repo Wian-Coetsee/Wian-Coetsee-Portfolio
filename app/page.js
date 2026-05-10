@@ -661,14 +661,16 @@ const addRef = (el) => {
             >
             wiancoetsee@gmail.com
             </a>
+            <br>
             <a
              href="https://www.linkedin.com/in/wian-coetsee-01796b34a/"
               target="_blank"
               rel="noopener noreferrer"
               className="transition text-zinc-400 hover:text-cyan-400"
             >
-  LinkedIn Profile
-</a>
+            LinkedIn Profile
+          </a>
+            </br>
           </div>
 
         </div>
