@@ -183,7 +183,7 @@ const addRef = (el) => {
 
   return (
     <div
-      className="w-[260px] h-[260px] cursor-pointer"
+      className="h-[220px] w-full max-w-[260px] cursor-pointer sm:h-[260px]"
       onClick={() => setActiveImage(img)}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
@@ -246,13 +246,17 @@ const addRef = (el) => {
 }
 
   return (
-    <div className="relative overflow-hidden bg-zinc-950 pt-24 text-white font-sans">
+    <div className="relative overflow-hidden bg-zinc-950 pt-20 md:pt-24 text-white font-sans">
 
   {/* NAVIGATION */}
-<nav className="fixed top-0 left-0 right-0 z-[999] border-b border-zinc-800/80 bg-zinc-950/75 backdrop-blur-2xl shadow-[0_8px_30px_rgba(0,0,0,0.35)]">
-  <div className="mx-auto flex max-w-7xl items-center justify-center px-6 py-4">
+{/* NAVIGATION */}
+<nav className="fixed top-0 left-0 right-0 z-[999] border-b border-zinc-800/80 bg-zinc-950/80 backdrop-blur-2xl shadow-[0_8px_30px_rgba(0,0,0,0.35)]">
 
-    <div className="hidden gap-2 md:flex">
+  <div className="mx-auto max-w-7xl px-3 py-3 md:px-6">
+
+    {/* MOBILE + DESKTOP NAV */}
+    <div className="flex gap-2 overflow-x-auto scrollbar-hide md:justify-center">
+
       {[
         { name: "About", id: "about" },
         { name: "Showcase", id: "videos" },
@@ -273,7 +277,7 @@ const addRef = (el) => {
               });
             }
           }}
-          className={`rounded-full border px-4 py-2 text-sm uppercase tracking-[0.18em] transition-all duration-300 ${
+          className={`shrink-0 rounded-full border px-3 py-2 text-[11px] uppercase tracking-[0.16em] transition-all duration-300 md:px-4 md:text-sm ${
             activeSection === item.id
               ? "border-cyan-500/40 bg-cyan-500/15 text-cyan-300 shadow-[0_0_20px_rgba(34,211,238,0.18)]"
               : "border-transparent text-zinc-400 hover:border-zinc-700 hover:bg-zinc-900/70 hover:text-white"
@@ -282,6 +286,7 @@ const addRef = (el) => {
           {item.name}
         </button>
       ))}
+
     </div>
 
   </div>
@@ -308,7 +313,7 @@ const addRef = (el) => {
             Wian Coetsee Portfolio 2026
           </p>
 
-          <h1 className="bg-gradient-to-r from-white via-zinc-200 to-zinc-500 bg-clip-text text-6xl font-black tracking-tight text-transparent md:text-8xl">
+          <h1 className="bg-gradient-to-r from-white via-zinc-200 to-zinc-500 bg-clip-text text-4xl font-black tracking-tight text-transparent sm:text-5xl md:text-7xl lg:text-8xl">
             3D Environment Artist
           </h1>
 
@@ -337,7 +342,7 @@ const addRef = (el) => {
                 About
               </p>
 
-              <h2 className="text-4xl font-bold leading-tight md:text-5xl">
+              <h2 className="text-3xl font-bold leading-tight sm:text-4xl md:text-5xl">
                 Detail-driven environment and hard-surface focused 3D artist.
               </h2>
             </div>
@@ -400,7 +405,7 @@ const addRef = (el) => {
               Showcase
             </p>
 
-            <h2 className="text-5xl font-bold">Video Projects</h2>
+            <h2 className="text-3xl font-bold sm:text-4xl md:text-5xl">Video Projects</h2>
           </div>
 
           <div className="grid gap-12">
@@ -425,7 +430,7 @@ const addRef = (el) => {
                     </video>
                   </div>
 
-                  <div className="flex flex-col justify-center p-10">
+                  <div className="flex flex-col justify-center p-6 md:p-10">
                     <h3 className="text-3xl font-bold">{v.title}</h3>
 
                     <div className="mt-5 h-px w-20 bg-gradient-to-r from-cyan-500 to-transparent" />
@@ -455,7 +460,7 @@ const addRef = (el) => {
               Process
             </p>
 
-            <h2 className="text-5xl font-bold">
+            <h2 className="text-3xl font-bold sm:text-4xl md:text-5xl">
               Modelling Workflow
             </h2>
 
@@ -478,7 +483,7 @@ const addRef = (el) => {
 
                   <iframe
                     src={`${doc.file}#zoom=70`}
-                    className="h-[650px] w-full bg-zinc-950"
+                    className="h-[420px] w-full bg-zinc-950 sm:h-[550px] md:h-[650px]"
                   />
                 </div>
 
@@ -524,7 +529,7 @@ const addRef = (el) => {
               Visuals
             </p>
 
-            <h2 className="text-5xl font-bold">Image Gallery</h2>
+            <h2 className="text-3xl font-bold sm:text-4xl md:text-5xl">Image Gallery</h2>
             <p>
               Additional works. Certain assets provided through Open Window Institute coursework.
             </p>
@@ -577,13 +582,13 @@ const addRef = (el) => {
               Documents
             </p>
 
-            <h2 className="text-5xl font-bold">CV / Resume</h2>
+            <h2 className="text-3xl font-bold sm:text-4xl md:text-5xl">CV / Resume</h2>
           </div>
 
           <div className="overflow-hidden rounded-[32px] border border-zinc-800/80 bg-zinc-900/30 shadow-[0_0_60px_rgba(0,0,0,0.5)]">
             <iframe
               src={getPdfUrl(cv.file, cv.zoom)}
-              className="h-[850px] w-full"
+              className="h-[500px] w-full sm:h-[650px] md:h-[850px]"
             />
           </div>
         </div>
@@ -602,7 +607,7 @@ const addRef = (el) => {
               Education
             </p>
 
-            <h2 className="text-5xl font-bold">Qualifications</h2>
+            <h2 className="text-3xl font-bold sm:text-4xl md:text-5xl">Qualifications</h2>
           </div>
 
           <div className="grid gap-8 md:grid-cols-[1fr_1.6fr]">
@@ -628,7 +633,7 @@ const addRef = (el) => {
             <div className="overflow-hidden rounded-[28px] border border-zinc-800/80 bg-zinc-900/30 shadow-[0_0_50px_rgba(0,0,0,0.45)]">
               <iframe
                 src={getPdfUrl(activeDoc.file, activeDoc.zoom)}
-                className="h-[760px] w-full"
+                className="h-[450px] w-full sm:h-[600px] md:h-[760px]"
               />
             </div>
 
@@ -640,7 +645,7 @@ const addRef = (el) => {
 <footer
   className="relative scroll-mt-32 border-t border-zinc-800/80 py-20"
 >
-  <div className="mx-auto flex max-w-6xl flex-col justify-between gap-12 px-6 md:flex-row">
+  <div className="mx-auto flex max-w-6xl flex-col gap-12 px-6 md:flex-row md:justify-between">
 
     {/* LEFT SIDE */}
     <div>
@@ -690,25 +695,36 @@ const addRef = (el) => {
 </footer>
 
       {/* GLOBAL FADE */}
-      <style jsx global>{`
-        .show {
-          opacity: 1 !important;
-          transform: translateY(0px) !important;
-        }
+<style jsx global>{`
+  .show {
+    opacity: 1 !important;
+    transform: translateY(0px) !important;
+  }
 
-        section {
-  opacity: 1;
-              }
+  section {
+    opacity: 1;
+  }
 
-        html {
-          scroll-behavior: smooth;
-        }
+  html {
+    scroll-behavior: smooth;
+  }
 
-        body {
-          background: #09090b;
-        }
-      `}</style>
+  body {
+    background: #09090b;
+  }
+
+  /* Hide scrollbar for mobile nav */
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+`}</style>
 
     </div>
+    
   );
 }
