@@ -103,9 +103,19 @@ const images = [
   ];
 
   const [activeDoc, setActiveDoc] = useState(qualifications[0]);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
   sectionsRef.current = [];
+}, []);
+
+useEffect(() => {
+  const check = () => setIsMobile(window.innerWidth < 768);
+
+  check(); // run once on load
+  window.addEventListener("resize", check);
+
+  return () => window.removeEventListener("resize", check);
 }, []);
 
 useEffect(() => {
@@ -747,44 +757,33 @@ const addRef = (el) => {
       {/* viewer */}
       <div className="overflow-hidden rounded-[28px] border border-zinc-800/80 bg-zinc-900/30 shadow-[0_0_50px_rgba(0,0,0,0.45)]">
 
-        {/* DESKTOP PDF */}
-        <iframe
-  src={getPdfUrl(activeDoc.file, activeDoc.zoom)}
-  className="hidden md:block h-[450px] w-full sm:h-[600px] md:h-[760px] bg-zinc-950"
-/>
+        {isMobile ? (
+  <div className="flex h-[450px] w-full flex-col items-center justify-center gap-4 bg-zinc-950 text-center">
 
-        {/* MOBILE FIXED VIEWER */}
-        <div className="flex h-[450px] w-full flex-col items-center justify-center gap-4 bg-zinc-950 text-center md:hidden">
+    <p className="text-zinc-300 font-medium">
+      {activeDoc.name}
+    </p>
 
-          <p className="text-zinc-300 font-medium">
-            {activeDoc.name}
-          </p>
+    <p className="text-sm text-zinc-500">
+      Mobile browsers cannot reliably display PDFs
+    </p>
 
-          <p className="text-sm text-zinc-500">
-            Tap below to view document
-          </p>
+    <a
+      href={activeDoc.file}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="group inline-flex items-center gap-2 rounded-xl border border-orange-500/30 bg-zinc-900/60 px-5 py-3 text-sm text-orange-300"
+    >
+      Open Document
+    </a>
 
-          <a
-            href={activeDoc.file}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group inline-flex items-center gap-2 rounded-xl border border-orange-500/30 bg-zinc-900/60 px-5 py-3 text-sm text-orange-300 transition-all duration-300 hover:border-orange-400 hover:bg-orange-500/10 hover:text-orange-200"
-          >
-            <span className="transition group-hover:translate-x-1">→</span>
-            Open Document
-          </a>
-
-          {/* OPTIONAL SAFETY VIEWER */}
-          <a
-            href={`https://mozilla.github.io/pdf.js/web/viewer.html?file=${window.location.origin}${activeDoc.file}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-xs text-zinc-500 underline underline-offset-4 hover:text-zinc-300"
-          >
-            Open in advanced viewer
-          </a>
-
-        </div>
+  </div>
+) : (
+  <iframe
+    src={getPdfUrl(activeDoc.file, activeDoc.zoom)}
+    className="h-[450px] w-full sm:h-[600px] md:h-[760px] bg-zinc-950"
+  />
+)}
 
       </div>
 
