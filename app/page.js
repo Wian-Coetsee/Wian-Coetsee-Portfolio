@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 
 export default function PortfolioWebsite() {
   const [activeImage, setActiveImage] = useState(null);
+  const [activeSection, setActiveSection] = useState("about");
 
   const sectionsRef = useRef([]);
 
@@ -105,6 +106,27 @@ const images = [
 
   useEffect(() => {
   sectionsRef.current = [];
+}, []);
+
+useEffect(() => {
+  const sections = document.querySelectorAll("section[id]");
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id);
+        }
+      });
+    },
+    {
+      threshold: 0.35,
+    }
+  );
+
+  sections.forEach((section) => observer.observe(section));
+
+  return () => observer.disconnect();
 }, []);
 
   const getPdfUrl = (file, zoom) => `${file}#zoom=${zoom}`;
@@ -226,36 +248,54 @@ const addRef = (el) => {
     <div className="relative overflow-hidden bg-zinc-950 text-white font-sans">
 
   {/* NAVIGATION */}
-  <nav className="sticky top-0 z-50 border-b border-zinc-800/80 bg-zinc-950/80 backdrop-blur-xl">
-    <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+<nav className="sticky top-0 z-50 border-b border-zinc-800/80 bg-zinc-950/80 backdrop-blur-xl">
+  <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
 
-      {/* Logo / Name */}
-      <div className="bg-gradient-to-r from-white to-zinc-500 bg-clip-text text-xl font-bold text-transparent">
-        Wian Coetsee
-      </div>
-
-      {/* Links */}
-      <div className="hidden gap-6 md:flex">
-        {[
-          { name: "About", id: "about" },
-          { name: "Showcase", id: "videos" },
-          { name: "Workflow", id: "workflow" },
-          { name: "Gallery", id: "gallery" },
-          { name: "CV", id: "cv" },
-          { name: "Qualifications", id: "qualifications" },
-        ].map((item) => (
-          <a
-            key={item.id}
-            href={`#${item.id}`}
-            className="text-sm uppercase tracking-[0.2em] text-zinc-400 transition duration-300 hover:text-cyan-400"
-          >
-            {item.name}
-          </a>
-        ))}
-      </div>
-
+    {/* Logo */}
+    <div className="bg-gradient-to-r from-white to-zinc-500 bg-clip-text text-xl font-bold text-transparent">
+      Wian Coetsee
     </div>
-  </nav>
+
+    {/* Links */}
+    <div className="hidden gap-2 md:flex">
+      {[
+        { name: "About", id: "about" },
+        { name: "Showcase", id: "videos" },
+        { name: "Workflow", id: "workflow" },
+        { name: "Gallery", id: "gallery" },
+        { name: "CV", id: "cv" },
+        { name: "Qualifications", id: "qualifications" },
+      ].map((item) => (
+        <button
+          key={item.id}
+          onClick={() => {
+            const el = document.getElementById(item.id);
+
+            if (el) {
+              const y =
+                el.getBoundingClientRect().top +
+                window.pageYOffset -
+                90;
+
+              window.scrollTo({
+                top: y,
+                behavior: "smooth",
+              });
+            }
+          }}
+          className={`rounded-full px-4 py-2 text-sm uppercase tracking-[0.18em] transition duration-300 ${
+            activeSection === item.id
+              ? "bg-cyan-500/15 text-cyan-300 border border-cyan-500/30"
+              : "border border-transparent text-zinc-400 hover:border-zinc-700 hover:text-white"
+          }`}
+        >
+          {item.name}
+        </button>
+      ))}
+    </div>
+
+  </div>
+</nav>
 
       {/* BACKGROUND GRADIENTS */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
@@ -294,7 +334,7 @@ const addRef = (el) => {
       {/* ABOUT */}
       <section
         ref={addRef}
-        className="relative opacity-0 translate-y-6 transition-all duration-1000"
+        className="relative scroll-mt-28 opacity-0 translate-y-6 transition-all duration-1000"
       >
         <div className="mx-auto max-w-6xl px-6 py-28">
 
@@ -358,7 +398,7 @@ const addRef = (el) => {
       {/* VIDEOS */}
       <section
         ref={addRef}
-        className="relative opacity-0 translate-y-6 transition-all duration-1000"
+        className="relative scroll-mt-28 opacity-0 translate-y-6 transition-all duration-1000"
       >
         <div className="mx-auto max-w-7xl px-6 py-28">
 
@@ -480,7 +520,7 @@ const addRef = (el) => {
       {/* GALLERY */}
       <section
         ref={addRef}
-        className="relative opacity-0 translate-y-6 transition-all duration-1000"
+        className="relative scroll-mt-28 opacity-0 translate-y-6 transition-all duration-1000"
       >
         <div className="mx-auto max-w-7xl px-6 py-28">
 
