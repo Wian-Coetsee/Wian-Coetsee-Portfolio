@@ -130,7 +130,8 @@ useEffect(() => {
   return () => observer.disconnect();
 }, []);
 
-  const getPdfUrl = (file, zoom) => `${file}#zoom=${zoom}`;
+  const getPdfUrl = (file, zoom) =>
+  `/docs/viewer.html?file=${encodeURIComponent(file)}&zoom=${zoom}`;
 
   /* =========================
      SCROLL REVEAL
@@ -649,9 +650,9 @@ const addRef = (el) => {
 
   {/* DESKTOP / TABLET */}
   <iframe
-    src={getPdfUrl(cv.file, cv.zoom)}
-    className="hidden md:block h-[500px] w-full sm:h-[650px] md:h-[850px]"
-  />
+  src={getPdfUrl(cv.file, cv.zoom)}
+  className="hidden md:block h-[500px] w-full sm:h-[650px] md:h-[850px] bg-zinc-950"
+/>
 
   {/* MOBILE FIXED VIEWER */}
   <div className="flex h-[400px] w-full flex-col items-center justify-center gap-4 bg-zinc-950 text-center md:hidden">
@@ -730,9 +731,9 @@ const addRef = (el) => {
 
         {/* DESKTOP PDF */}
         <iframe
-          src={getPdfUrl(activeDoc.file, activeDoc.zoom)}
-          className="hidden md:block h-[450px] w-full sm:h-[600px] md:h-[760px]"
-        />
+  src={getPdfUrl(activeDoc.file, activeDoc.zoom)}
+  className="hidden md:block h-[450px] w-full sm:h-[600px] md:h-[760px] bg-zinc-950"
+/>
 
         {/* MOBILE FIXED VIEWER */}
         <div className="flex h-[450px] w-full flex-col items-center justify-center gap-4 bg-zinc-950 text-center md:hidden">
