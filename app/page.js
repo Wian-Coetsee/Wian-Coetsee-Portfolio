@@ -225,6 +225,38 @@ const addRef = (el) => {
   return (
     <div className="relative overflow-hidden bg-zinc-950 text-white font-sans">
 
+  {/* NAVIGATION */}
+  <nav className="sticky top-0 z-50 border-b border-zinc-800/80 bg-zinc-950/80 backdrop-blur-xl">
+    <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+
+      {/* Logo / Name */}
+      <div className="bg-gradient-to-r from-white to-zinc-500 bg-clip-text text-xl font-bold text-transparent">
+        Wian Coetsee
+      </div>
+
+      {/* Links */}
+      <div className="hidden gap-6 md:flex">
+        {[
+          { name: "About", id: "about" },
+          { name: "Showcase", id: "videos" },
+          { name: "Workflow", id: "workflow" },
+          { name: "Gallery", id: "gallery" },
+          { name: "CV", id: "cv" },
+          { name: "Qualifications", id: "qualifications" },
+        ].map((item) => (
+          <a
+            key={item.id}
+            href={`#${item.id}`}
+            className="text-sm uppercase tracking-[0.2em] text-zinc-400 transition duration-300 hover:text-cyan-400"
+          >
+            {item.name}
+          </a>
+        ))}
+      </div>
+
+    </div>
+  </nav>
+
       {/* BACKGROUND GRADIENTS */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="absolute top-[-200px] left-[-100px] h-[500px] w-[500px] rounded-full bg-cyan-500/10 blur-3xl" />
@@ -280,7 +312,7 @@ const addRef = (el) => {
 
             <div className="space-y-6 text-zinc-400 leading-relaxed text-lg">
               <p>
-                I focus primarily on environment art, hard-surface modelling,
+                I primarily focus on environment art, hard-surface modelling,
                 cinematic lighting, and structured asset creation with an emphasis
                 on presentation quality and visual clarity.
               </p>
