@@ -532,11 +532,29 @@ const addRef = (el) => {
 
                   <div className="absolute inset-0 z-10 bg-gradient-to-tr from-orange-500/10 via-transparent to-cyan-500/10 opacity-0 transition duration-700 group-hover:opacity-100 pointer-events-none" />
 
-                {/* DESKTOP / TABLET PDF */}
-                  <iframe
-                    src={`${doc.file}#zoom=70`}
-                  className="hidden md:block h-[420px] w-full bg-zinc-950 sm:h-[550px] md:h-[650px]"
-                />
+                  {/* DESKTOP / TABLET PDF (FIXED VERSION) */}
+<object
+  data={`${doc.file}#zoom=70`}
+  type="application/pdf"
+  className="hidden md:block h-[420px] w-full sm:h-[550px] md:h-[650px] bg-zinc-950"
+>
+  <div className="flex h-full w-full flex-col items-center justify-center gap-3 text-center text-zinc-400">
+  
+  <p className="text-sm text-zinc-500">
+    Mobile browsers do not support embedded PDF viewing.
+  </p>
+
+  <a
+    href={doc.file}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="rounded-xl border border-cyan-500/30 bg-zinc-900/60 px-5 py-3 text-sm text-cyan-300 transition hover:border-cyan-400 hover:text-cyan-200"
+  >
+    Open PDF
+  </a>
+
+</div>
+</object>
 
                 {/* MOBILE FALLBACK */}
                   <div className="flex h-[420px] w-full flex-col items-center justify-center gap-4 bg-zinc-950 text-center md:hidden">
