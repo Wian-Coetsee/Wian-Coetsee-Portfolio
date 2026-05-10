@@ -508,117 +508,99 @@ const addRef = (el) => {
       </section>
 
             {/* WORKFLOW PDFs */}
-      <section
-        id="workflow"
-        ref={addRef}
-        className="relative opacity-0 translate-y-6 transition-all duration-1000 border-t border-zinc-800/50"
-      >
-        <div className="mx-auto max-w-7xl px-6 py-28">
+<section
+  id="workflow"
+  ref={addRef}
+  className="relative opacity-0 translate-y-6 transition-all duration-1000 border-t border-zinc-800/50"
+>
+  <div className="mx-auto max-w-7xl px-6 py-28">
 
-          <div className="mb-14">
-            <p className="mb-4 text-sm uppercase tracking-[0.35em] text-orange-400">
-              Process
-            </p>
+    <div className="mb-14">
+      <p className="mb-4 text-sm uppercase tracking-[0.35em] text-orange-400">
+        Process
+      </p>
 
-            <h2 className="text-3xl font-bold sm:text-4xl md:text-5xl">
-              Modelling Workflow
-            </h2>
+      <h2 className="text-3xl font-bold sm:text-4xl md:text-5xl">
+        Modelling Workflow
+      </h2>
 
-            <p className="mt-5 max-w-2xl text-zinc-400 leading-relaxed">
-              Workflow documentation showcasing modelling structure,
-              production methodology, scene planning, and technical breakdowns.
-            </p>
+      <p className="mt-5 max-w-2xl text-zinc-400 leading-relaxed">
+        Workflow documentation showcasing modelling structure,
+        production methodology, scene planning, and technical breakdowns.
+      </p>
+    </div>
+
+    <div className="grid gap-10 lg:grid-cols-2">
+      {workflowDocs.map((doc) => (
+        <div
+          key={doc.file}
+          className="group overflow-hidden rounded-[32px] border border-zinc-800/80 bg-zinc-900/30 shadow-[0_0_50px_rgba(0,0,0,0.45)] backdrop-blur-sm transition duration-500 hover:border-orange-500/30"
+        >
+
+          {/* PDF VIEWER */}
+          <div className="relative overflow-hidden">
+
+            <div className="absolute inset-0 z-10 bg-gradient-to-tr from-orange-500/10 via-transparent to-cyan-500/10 opacity-0 transition duration-700 group-hover:opacity-100 pointer-events-none" />
+
+            {/* DESKTOP ONLY PDF */}
+            <iframe
+              src={`${doc.file}#zoom=70`}
+              className="hidden md:block h-[420px] w-full sm:h-[550px] md:h-[650px] bg-zinc-950"
+            />
+
+            {/* MOBILE FALLBACK (NO PDF RENDERING) */}
+            <div className="flex h-[420px] w-full flex-col items-center justify-center gap-4 bg-zinc-950 text-center md:hidden">
+
+              <p className="text-zinc-300 font-medium tracking-wide">
+                {doc.title}
+              </p>
+
+              <p className="text-sm text-zinc-500">
+                PDF preview is not supported on mobile devices
+              </p>
+
+              <a
+                href={doc.file}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group inline-flex items-center gap-2 rounded-xl border border-orange-500/30 bg-zinc-900/60 px-5 py-3 text-sm text-orange-300 transition-all duration-300 hover:border-orange-400 hover:bg-orange-500/10 hover:text-orange-200 hover:shadow-[0_0_20px_rgba(249,115,22,0.2)]"
+              >
+                <span className="transition group-hover:translate-x-1">→</span>
+                Open PDF
+              </a>
+
+            </div>
+
           </div>
 
-          <div className="grid gap-10 lg:grid-cols-2">
-            {workflowDocs.map((doc) => (
-              <div
-                key={doc.file}
-                className="group overflow-hidden rounded-[32px] border border-zinc-800/80 bg-zinc-900/30 shadow-[0_0_50px_rgba(0,0,0,0.45)] backdrop-blur-sm transition duration-500 hover:border-orange-500/30"
-              >
+          {/* TEXT */}
+          <div className="p-8">
+            <h3 className="text-2xl font-bold">
+              {doc.title}
+            </h3>
 
-                {/* PDF VIEWER */}
-                <div className="relative overflow-hidden">
+            <div className="mt-4 h-px w-20 bg-gradient-to-r from-orange-500 to-transparent" />
 
-                  <div className="absolute inset-0 z-10 bg-gradient-to-tr from-orange-500/10 via-transparent to-cyan-500/10 opacity-0 transition duration-700 group-hover:opacity-100 pointer-events-none" />
+            <p className="mt-5 leading-relaxed text-zinc-400">
+              {doc.description}
+            </p>
 
-                  {/* DESKTOP / TABLET PDF (FIXED VERSION) */}
-<object
-  data={`${doc.file}#zoom=70`}
-  type="application/pdf"
-  className="hidden md:block h-[420px] w-full sm:h-[550px] md:h-[650px] bg-zinc-950"
->
-  <div className="flex h-full w-full flex-col items-center justify-center gap-3 text-center text-zinc-400">
-  
-  <p className="text-sm text-zinc-500">
-    Mobile browsers do not support embedded PDF viewing.
-  </p>
-
-  <a
-    href={doc.file}
-    target="_blank"
-    rel="noopener noreferrer"
-    className="rounded-xl border border-cyan-500/30 bg-zinc-900/60 px-5 py-3 text-sm text-cyan-300 transition hover:border-cyan-400 hover:text-cyan-200"
-  >
-    Open PDF
-  </a>
-
-</div>
-</object>
-
-                {/* MOBILE FALLBACK */}
-                  <div className="flex h-[420px] w-full flex-col items-center justify-center gap-4 bg-zinc-950 text-center md:hidden">
-
-                 <p className="text-zinc-300 font-medium tracking-wide">
-                  {doc.title}
-                </p>
-
-                <p className="text-sm text-zinc-500">
-                  PDF preview not supported on mobile
-                </p>
-
-                <a
-                  href={doc.file}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group inline-flex items-center gap-2 rounded-xl border border-orange-500/30 bg-zinc-900/60 px-5 py-3 text-sm text-orange-300 transition-all duration-300 hover:border-orange-400 hover:bg-orange-500/10 hover:text-orange-200 hover:shadow-[0_0_20px_rgba(249,115,22,0.2)]"
-                >
-                  <span className="transition group-hover:translate-x-1">→</span>
-                  Open PDF
-               </a>
-
-                </div>
-
-              </div>
-
-                {/* TEXT */}
-                <div className="p-8">
-                  <h3 className="text-2xl font-bold">
-                    {doc.title}
-                  </h3>
-
-                  <div className="mt-4 h-px w-20 bg-gradient-to-r from-orange-500 to-transparent" />
-
-                  <p className="mt-5 leading-relaxed text-zinc-400">
-                    {doc.description}
-                  </p>
-
-                  <a
-                    href={doc.file}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-6 inline-flex rounded-xl border border-zinc-700 bg-zinc-900/60 px-5 py-3 text-sm text-zinc-300 transition hover:border-orange-500/40 hover:text-white"
-                  >
-                    Open PDF
-                  </a>
-                </div>
-
-              </div>
-            ))}
+            <a
+              href={doc.file}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-6 inline-flex rounded-xl border border-zinc-700 bg-zinc-900/60 px-5 py-3 text-sm text-zinc-300 transition hover:border-orange-500/40 hover:text-white"
+            >
+              Open PDF
+            </a>
           </div>
 
         </div>
-      </section>
+      ))}
+    </div>
+
+  </div>
+</section>
 
       {/* GALLERY */}
       <section
