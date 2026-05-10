@@ -248,13 +248,20 @@ const addRef = (el) => {
   return (
     <div className="relative overflow-hidden bg-zinc-950 pt-20 md:pt-24 text-white font-sans">
 
-  {/* NAVIGATION */}
 {/* NAVIGATION */}
 <nav className="fixed top-0 left-0 right-0 z-[999] border-b border-zinc-800/80 bg-zinc-950/80 backdrop-blur-2xl shadow-[0_8px_30px_rgba(0,0,0,0.35)]">
 
-  <div className="mx-auto max-w-7xl px-3 py-3 md:px-6">
+  <div className="relative mx-auto max-w-7xl px-3 py-3 md:px-6">
 
-    {/* MOBILE + DESKTOP NAV */}
+    {/* MOBILE MENU STATE TOGGLE BUTTON */}
+    <button
+      onClick={() => setMenuOpen(!menuOpen)}
+      className="absolute right-3 top-3 rounded-xl border border-zinc-700 bg-zinc-900/60 px-3 py-2 text-sm text-zinc-300 md:hidden"
+    >
+      ☰
+    </button>
+
+    {/* MOBILE + DESKTOP NAV (UNCHANGED) */}
     <div className="flex gap-2 overflow-x-auto scrollbar-hide md:justify-center">
 
       {[
@@ -276,6 +283,9 @@ const addRef = (el) => {
                 block: "start",
               });
             }
+
+            // close mobile menu after click
+            setMenuOpen(false);
           }}
           className={`shrink-0 rounded-full border px-3 py-2 text-[11px] uppercase tracking-[0.16em] transition-all duration-300 md:px-4 md:text-sm ${
             activeSection === item.id
@@ -288,6 +298,45 @@ const addRef = (el) => {
       ))}
 
     </div>
+
+    {/* MOBILE DROPDOWN MENU */}
+    {menuOpen && (
+      <div className="absolute left-0 top-full z-[1000] w-full border-t border-zinc-800 bg-zinc-950/95 px-4 py-4 backdrop-blur-xl md:hidden">
+
+        <div className="flex flex-col gap-2">
+
+          {[
+            { name: "About", id: "about" },
+            { name: "Showcase", id: "videos" },
+            { name: "Workflow", id: "workflow" },
+            { name: "Gallery", id: "gallery" },
+            { name: "CV", id: "cv" },
+            { name: "Qualifications & Contact", id: "qualifications" },
+          ].map((item) => (
+            <button
+              key={item.id}
+              onClick={() => {
+                const el = document.getElementById(item.id);
+
+                if (el) {
+                  el.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start",
+                  });
+                }
+
+                setMenuOpen(false);
+              }}
+              className="rounded-xl border border-zinc-800 bg-zinc-900/40 px-4 py-3 text-left text-sm text-zinc-300 hover:border-cyan-500/40 hover:text-cyan-300"
+            >
+              {item.name}
+            </button>
+          ))}
+
+        </div>
+
+      </div>
+    )}
 
   </div>
 </nav>
@@ -479,13 +528,39 @@ const addRef = (el) => {
 
                 {/* PDF VIEWER */}
                 <div className="relative overflow-hidden">
+
                   <div className="absolute inset-0 z-10 bg-gradient-to-tr from-orange-500/10 via-transparent to-cyan-500/10 opacity-0 transition duration-700 group-hover:opacity-100 pointer-events-none" />
 
+                {/* DESKTOP / TABLET PDF */}
                   <iframe
                     src={`${doc.file}#zoom=70`}
-                    className="h-[420px] w-full bg-zinc-950 sm:h-[550px] md:h-[650px]"
-                  />
+                  className="hidden md:block h-[420px] w-full bg-zinc-950 sm:h-[550px] md:h-[650px]"
+                />
+
+                {/* MOBILE FALLBACK */}
+                  <div className="flex h-[420px] w-full flex-col items-center justify-center gap-4 bg-zinc-950 text-center md:hidden">
+
+                 <p className="text-zinc-300 font-medium tracking-wide">
+                  {doc.title}
+                </p>
+
+                <p className="text-sm text-zinc-500">
+                  PDF preview not supported on mobile
+                </p>
+
+                <a
+                  href={doc.file}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group inline-flex items-center gap-2 rounded-xl border border-orange-500/30 bg-zinc-900/60 px-5 py-3 text-sm text-orange-300 transition-all duration-300 hover:border-orange-400 hover:bg-orange-500/10 hover:text-orange-200 hover:shadow-[0_0_20px_rgba(249,115,22,0.2)]"
+                >
+                  <span className="transition group-hover:translate-x-1">→</span>
+                  Open PDF
+               </a>
+
                 </div>
+
+              </div>
 
                 {/* TEXT */}
                 <div className="p-8">
