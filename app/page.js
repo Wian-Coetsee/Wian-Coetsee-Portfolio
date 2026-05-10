@@ -644,30 +644,38 @@ const addRef = (el) => {
   </div>
 )}
 
-      {/* CV */}
-      <section
-        id="cv"
-        ref={addRef}
-        className="relative opacity-0 translate-y-6 transition-all duration-1000 border-t border-zinc-800/80 bg-zinc-900/10"
-      >
-        <div className="mx-auto max-w-6xl px-6 py-28">
+      {/* CV VIEWER */}
+<div className="relative">
 
-          <div className="mb-10">
-            <p className="mb-4 text-sm uppercase tracking-[0.35em] text-orange-400">
-              Documents
-            </p>
+  {/* DESKTOP / TABLET */}
+  <iframe
+    src={getPdfUrl(cv.file, cv.zoom)}
+    className="hidden md:block h-[500px] w-full sm:h-[650px] md:h-[850px]"
+  />
 
-            <h2 className="text-3xl font-bold sm:text-4xl md:text-5xl">CV / Resume</h2>
-          </div>
+  {/* MOBILE FALLBACK */}
+  <div className="flex h-[400px] w-full flex-col items-center justify-center gap-4 bg-zinc-950 text-center md:hidden">
 
-          <div className="overflow-hidden rounded-[32px] border border-zinc-800/80 bg-zinc-900/30 shadow-[0_0_60px_rgba(0,0,0,0.5)]">
-            <iframe
-              src={getPdfUrl(cv.file, cv.zoom)}
-              className="h-[500px] w-full sm:h-[650px] md:h-[850px]"
-            />
-          </div>
-        </div>
-      </section>
+    <p className="text-zinc-300 font-medium">
+      CV Document
+    </p>
+
+    <p className="text-sm text-zinc-500">
+      PDF preview not supported on mobile
+    </p>
+
+    <a
+      href={cv.file}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="rounded-xl border border-cyan-500/30 bg-zinc-900/60 px-5 py-3 text-sm text-cyan-300"
+    >
+      Open CV
+    </a>
+
+  </div>
+
+</div>
 
       {/* QUALIFICATIONS */}
       <section
@@ -705,12 +713,37 @@ const addRef = (el) => {
             </div>
 
             {/* viewer */}
-            <div className="overflow-hidden rounded-[28px] border border-zinc-800/80 bg-zinc-900/30 shadow-[0_0_50px_rgba(0,0,0,0.45)]">
-              <iframe
-                src={getPdfUrl(activeDoc.file, activeDoc.zoom)}
-                className="h-[450px] w-full sm:h-[600px] md:h-[760px]"
-              />
-            </div>
+<div className="overflow-hidden rounded-[28px] border border-zinc-800/80 bg-zinc-900/30 shadow-[0_0_50px_rgba(0,0,0,0.45)]">
+
+  {/* DESKTOP PDF */}
+  <iframe
+    src={getPdfUrl(activeDoc.file, activeDoc.zoom)}
+    className="hidden md:block h-[450px] w-full sm:h-[600px] md:h-[760px]"
+  />
+
+  {/* MOBILE FALLBACK */}
+  <div className="flex h-[450px] w-full flex-col items-center justify-center gap-4 bg-zinc-950 text-center md:hidden">
+
+    <p className="text-zinc-300 font-medium">
+      {activeDoc.name}
+    </p>
+
+    <p className="text-sm text-zinc-500">
+      PDF preview not supported on mobile
+    </p>
+
+    <a
+      href={activeDoc.file}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="rounded-xl border border-orange-500/30 bg-zinc-900/60 px-5 py-3 text-sm text-orange-300 transition hover:bg-orange-500/10"
+    >
+      Open Document
+    </a>
+
+  </div>
+
+</div>
 
           </div>
         </div>
