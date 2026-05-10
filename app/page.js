@@ -259,8 +259,7 @@ const addRef = (el) => {
         { name: "Workflow", id: "workflow" },
         { name: "Gallery", id: "gallery" },
         { name: "CV", id: "cv" },
-        { name: "Qualifications", id: "qualifications" },
-        { name: "Contact", id: "contact" },
+        { name: "Qualifications & Contact", id: "qualifications" },
       ].map((item) => (
         <button
           key={item.id}
@@ -639,7 +638,6 @@ const addRef = (el) => {
 
       {/* FOOTER */}
 <footer
-  id="contact"
   className="relative scroll-mt-32 border-t border-zinc-800/80 py-20"
 >
   <div className="mx-auto flex max-w-6xl flex-col justify-between gap-12 px-6 md:flex-row">
