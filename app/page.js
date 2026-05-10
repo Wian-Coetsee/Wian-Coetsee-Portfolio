@@ -653,7 +653,7 @@ const addRef = (el) => {
     className="hidden md:block h-[500px] w-full sm:h-[650px] md:h-[850px]"
   />
 
-  {/* MOBILE FALLBACK */}
+  {/* MOBILE FIXED VIEWER */}
   <div className="flex h-[400px] w-full flex-col items-center justify-center gap-4 bg-zinc-950 text-center md:hidden">
 
     <p className="text-zinc-300 font-medium">
@@ -661,93 +661,117 @@ const addRef = (el) => {
     </p>
 
     <p className="text-sm text-zinc-500">
-      PDF preview not supported on mobile
+      Tap below to view the document
     </p>
 
     <a
       href={cv.file}
       target="_blank"
       rel="noopener noreferrer"
-      className="rounded-xl border border-cyan-500/30 bg-zinc-900/60 px-5 py-3 text-sm text-cyan-300"
+      className="group inline-flex items-center gap-2 rounded-xl border border-cyan-500/30 bg-zinc-900/60 px-5 py-3 text-sm text-cyan-300 transition-all duration-300 hover:border-cyan-400 hover:bg-cyan-500/10 hover:text-cyan-200"
     >
+      <span className="transition group-hover:translate-x-1">→</span>
       Open CV
     </a>
 
-  </div>
-
-</div>
-
-      {/* QUALIFICATIONS */}
-      <section
-        id="qualifications"
-        ref={addRef}
-        className="relative opacity-0 translate-y-6 transition-all duration-1000 border-t border-zinc-800/80"
-      >
-        <div className="mx-auto max-w-6xl px-6 py-24">
-
-          <div className="mb-12">
-            <p className="mb-4 text-sm uppercase tracking-[0.35em] text-cyan-400">
-              Education
-            </p>
-
-            <h2 className="text-3xl font-bold sm:text-4xl md:text-5xl">Qualifications</h2>
-          </div>
-
-          <div className="grid gap-8 md:grid-cols-[1fr_1.6fr]">
-
-            {/* buttons */}
-            <div className="space-y-3">
-              {qualifications.map((q) => (
-                <button
-                  key={q.name}
-                  onClick={() => setActiveDoc(q)}
-                  className={`w-full rounded-2xl border px-5 py-4 text-left transition duration-300 ${
-                    activeDoc.name === q.name
-                      ? "border-cyan-500/40 bg-cyan-500/10 text-white"
-                      : "border-zinc-800 bg-zinc-900/30 text-zinc-400 hover:border-zinc-600 hover:text-zinc-200"
-                  }`}
-                >
-                  {q.name}
-                </button>
-              ))}
-            </div>
-
-            {/* viewer */}
-<div className="overflow-hidden rounded-[28px] border border-zinc-800/80 bg-zinc-900/30 shadow-[0_0_50px_rgba(0,0,0,0.45)]">
-
-  {/* DESKTOP PDF */}
-  <iframe
-    src={getPdfUrl(activeDoc.file, activeDoc.zoom)}
-    className="hidden md:block h-[450px] w-full sm:h-[600px] md:h-[760px]"
-  />
-
-  {/* MOBILE FALLBACK */}
-  <div className="flex h-[450px] w-full flex-col items-center justify-center gap-4 bg-zinc-950 text-center md:hidden">
-
-    <p className="text-zinc-300 font-medium">
-      {activeDoc.name}
-    </p>
-
-    <p className="text-sm text-zinc-500">
-      PDF preview not supported on mobile
-    </p>
-
+    {/* EXTRA SAFETY LINK (IMPORTANT FIX) */}
     <a
-      href={activeDoc.file}
+      href={`https://mozilla.github.io/pdf.js/web/viewer.html?file=${window.location.origin}${cv.file}`}
       target="_blank"
       rel="noopener noreferrer"
-      className="rounded-xl border border-orange-500/30 bg-zinc-900/60 px-5 py-3 text-sm text-orange-300 transition hover:bg-orange-500/10"
+      className="text-xs text-zinc-500 underline underline-offset-4 hover:text-zinc-300"
     >
-      Open Document
+      Open in advanced viewer
     </a>
 
   </div>
 
 </div>
 
-          </div>
+{/* QUALIFICATIONS */}
+<section
+  id="qualifications"
+  ref={addRef}
+  className="relative opacity-0 translate-y-6 transition-all duration-1000 border-t border-zinc-800/80"
+>
+  <div className="mx-auto max-w-6xl px-6 py-24">
+
+    <div className="mb-12">
+      <p className="mb-4 text-sm uppercase tracking-[0.35em] text-cyan-400">
+        Education
+      </p>
+
+      <h2 className="text-3xl font-bold sm:text-4xl md:text-5xl">
+        Qualifications
+      </h2>
+    </div>
+
+    <div className="grid gap-8 md:grid-cols-[1fr_1.6fr]">
+
+      {/* buttons */}
+      <div className="space-y-3">
+        {qualifications.map((q) => (
+          <button
+            key={q.name}
+            onClick={() => setActiveDoc(q)}
+            className={`w-full rounded-2xl border px-5 py-4 text-left transition duration-300 ${
+              activeDoc.name === q.name
+                ? "border-cyan-500/40 bg-cyan-500/10 text-white"
+                : "border-zinc-800 bg-zinc-900/30 text-zinc-400 hover:border-zinc-600 hover:text-zinc-200"
+            }`}
+          >
+            {q.name}
+          </button>
+        ))}
+      </div>
+
+      {/* viewer */}
+      <div className="overflow-hidden rounded-[28px] border border-zinc-800/80 bg-zinc-900/30 shadow-[0_0_50px_rgba(0,0,0,0.45)]">
+
+        {/* DESKTOP PDF */}
+        <iframe
+          src={getPdfUrl(activeDoc.file, activeDoc.zoom)}
+          className="hidden md:block h-[450px] w-full sm:h-[600px] md:h-[760px]"
+        />
+
+        {/* MOBILE FIXED VIEWER */}
+        <div className="flex h-[450px] w-full flex-col items-center justify-center gap-4 bg-zinc-950 text-center md:hidden">
+
+          <p className="text-zinc-300 font-medium">
+            {activeDoc.name}
+          </p>
+
+          <p className="text-sm text-zinc-500">
+            Tap below to view document
+          </p>
+
+          <a
+            href={activeDoc.file}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group inline-flex items-center gap-2 rounded-xl border border-orange-500/30 bg-zinc-900/60 px-5 py-3 text-sm text-orange-300 transition-all duration-300 hover:border-orange-400 hover:bg-orange-500/10 hover:text-orange-200"
+          >
+            <span className="transition group-hover:translate-x-1">→</span>
+            Open Document
+          </a>
+
+          {/* OPTIONAL SAFETY VIEWER */}
+          <a
+            href={`https://mozilla.github.io/pdf.js/web/viewer.html?file=${window.location.origin}${activeDoc.file}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-xs text-zinc-500 underline underline-offset-4 hover:text-zinc-300"
+          >
+            Open in advanced viewer
+          </a>
+
         </div>
-      </section>
+
+      </div>
+
+    </div>
+  </div>
+</section>
 
       {/* FOOTER */}
 <footer
