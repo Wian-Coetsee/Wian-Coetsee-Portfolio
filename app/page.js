@@ -251,11 +251,6 @@ const addRef = (el) => {
 <nav className="sticky top-0 z-50 border-b border-zinc-800/80 bg-zinc-950/80 backdrop-blur-xl">
   <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
 
-    {/* Logo */}
-    <div className="bg-gradient-to-r from-white to-zinc-500 bg-clip-text text-xl font-bold text-transparent">
-      Wian Coetsee
-    </div>
-
     {/* Links */}
     <div className="hidden gap-2 md:flex">
       {[
@@ -308,6 +303,7 @@ const addRef = (el) => {
 
       {/* HERO */}
       <section
+        id="hero"
         ref={addRef}
         className="relative opacity-0 translate-y-6 transition-all duration-1000 border-b border-zinc-800/80"
       >
@@ -333,6 +329,7 @@ const addRef = (el) => {
 
       {/* ABOUT */}
       <section
+        id="about"
         ref={addRef}
         className="relative scroll-mt-28 opacity-0 translate-y-6 transition-all duration-1000"
       >
@@ -397,6 +394,7 @@ const addRef = (el) => {
 
       {/* VIDEOS */}
       <section
+        id="videos"
         ref={addRef}
         className="relative scroll-mt-28 opacity-0 translate-y-6 transition-all duration-1000"
       >
@@ -451,6 +449,7 @@ const addRef = (el) => {
 
             {/* WORKFLOW PDFs */}
       <section
+        id="workflow"
         ref={addRef}
         className="relative opacity-0 translate-y-6 transition-all duration-1000 border-t border-zinc-800/50"
       >
@@ -519,6 +518,7 @@ const addRef = (el) => {
 
       {/* GALLERY */}
       <section
+        id="gallery"
         ref={addRef}
         className="relative scroll-mt-28 opacity-0 translate-y-6 transition-all duration-1000"
       >
@@ -571,6 +571,7 @@ const addRef = (el) => {
 
       {/* CV */}
       <section
+        id="cv"
         ref={addRef}
         className="relative opacity-0 translate-y-6 transition-all duration-1000 border-t border-zinc-800/80 bg-zinc-900/10"
       >
